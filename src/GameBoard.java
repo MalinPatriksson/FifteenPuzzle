@@ -26,7 +26,10 @@ public class GameBoard extends JFrame {
         }
         add(puzzlePanel, BorderLayout.CENTER);
         ButtonFunction buttonFunction = new ButtonFunction(this);
-        buttonFunction.addActionListener();
+
+        for(JButton button : buttons) {
+            button.addActionListener(buttonFunction);
+        }
 
         //shuffleButtons();
         newGame();

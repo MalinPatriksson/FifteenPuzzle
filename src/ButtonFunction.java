@@ -1,7 +1,9 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ButtonFunction {
+public class ButtonFunction implements ActionListener {
     protected JButton emptyButton;
     protected ArrayList<JButton> buttons;
     protected GameBoard gameBoard;
@@ -12,25 +14,20 @@ public class ButtonFunction {
         this.emptyButton = gameBoard.emptyButton;
     }
 
-    public void addActionListener() {
-        // Iterera igenom alla knappar i listan buttons
-        for (JButton button : buttons) {
-            button.addActionListener(e -> {
-                JButton clickedButton = (JButton) e.getSource(); // Knapp som utlöst en händelse
-                if (moveButton(clickedButton)) { // Kontrollera om det går att flytta den klickande knappen
-                    gameBoard.puzzlePanel.removeAll();
-                    for (JButton movedButton : buttons) {
-                        gameBoard.puzzlePanel.add(movedButton);
-                    }
-                    gameBoard.puzzlePanel.revalidate(); // Uppdaterar panelen med nya ändringar
-                    gameBoard.puzzlePanel.repaint();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton clickedButton = (JButton) e.getSource();
+        if (moveButton(clickedButton)) {
+            gameBoard.puzzlePanel.removeAll();
+            for (JButton movedButton : buttons) {
+                gameBoard.puzzlePanel.add(movedButton);
+            }
+            gameBoard.puzzlePanel.revalidate();
+            gameBoard.puzzlePanel.repaint();
 
-                    // Om spelet är slutfört, visa ett meddelande
-                    if(gameComplete()) {
-                        message();
-                    }
-                }
-            });
+            if (gameComplete()) {
+                message();
+            }
         }
     }
 
@@ -48,7 +45,7 @@ public class ButtonFunction {
                     clickedRow = row; // Spara radpositionen för den klickande knappen
                     clickedCol = col;
 
-                // Spara den tomma knappens position
+                    // Spara den tomma knappens position
                 } else if (buttons.get(row * 4 + col).getText().isEmpty()) {
                     emptyRow = row;
                     emptyCol = col;
