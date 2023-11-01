@@ -11,6 +11,7 @@ public class GameBoard extends JFrame {
     private JButton newGameButton;
     private Font custom = new Font("Arial", Font.PLAIN, 15);
     private Font custom1 = new Font("Arial", Font.BOLD, 20);
+    Color coustumColor = new Color(128,234,255);
 
     GameBoard() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -45,7 +46,7 @@ public class GameBoard extends JFrame {
         for (int number = 0; number < 15; number++) {
             JButton button = new JButton(String.valueOf(number + 1));
             buttons.add(button);
-            button.setBackground(Color.pink);
+            button.setBackground(coustumColor);
             button.setForeground(Color.WHITE);
             button.setFont(custom1);
             button.addActionListener(e -> {
