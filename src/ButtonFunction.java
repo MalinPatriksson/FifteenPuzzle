@@ -4,9 +4,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ButtonFunction implements ActionListener {
-    protected JButton emptyButton;
-    protected ArrayList<JButton> buttons;
-    protected GameBoard gameBoard;
+    private JButton emptyButton;
+    private ArrayList<JButton> buttons;
+    private GameBoard gameBoard;
 
     public ButtonFunction(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -32,7 +32,7 @@ public class ButtonFunction implements ActionListener {
     }
 
     // Initialiserar variabler som används för att lagra rad- och kolumnpositionen. Tomma värden (-1)
-    boolean moveButton(JButton clickedButton) {
+    public boolean moveButton(JButton clickedButton) {
         int clickedRow = -1;
         int clickedCol = -1;
         int emptyRow = -1;
@@ -69,7 +69,7 @@ public class ButtonFunction implements ActionListener {
     }
 
     // Kontrollerar om spelet är slutfört, dvs sorterade i nummerordning.
-    boolean gameComplete() {
+    public boolean gameComplete() {
         int expectedNumber = 1;
 
         for (JButton button : buttons) {
@@ -85,7 +85,7 @@ public class ButtonFunction implements ActionListener {
         return true; // När alla knappar har kontrollerats och inga fel uppstått, är spelet slutfört.
     }
 
-    void message() {
+    public void message() {
         JOptionPane.showMessageDialog(null, "Grattis, du vann!");
 
     }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GameBoard extends JFrame {
-    ArrayList<JButton> buttons;
-    JPanel puzzlePanel;
-    JPanel newGamePanel;
-    JButton emptyButton;
-    JButton newGameButton;
-    Font custom = new Font("Arial", Font.PLAIN, 15);
-    Font custom1 = new Font("Arial", Font.BOLD, 20);
+    protected ArrayList<JButton> buttons;
+    protected JPanel puzzlePanel;
+    protected JPanel newGamePanel;
+    protected JButton emptyButton;
+    private JButton newGameButton;
+    private Font custom = new Font("Arial", Font.PLAIN, 15);
+    private Font custom1 = new Font("Arial", Font.BOLD, 20);
 
     GameBoard() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -60,7 +60,7 @@ public class GameBoard extends JFrame {
 
     }
         // Metod för att shuffla knapparna
-        void shuffleButtons () {
+        public void shuffleButtons () {
             Collections.shuffle(buttons);
             puzzlePanel.removeAll(); //Tar bort befintliga brickor från spelet
             for (JButton button : buttons) {
