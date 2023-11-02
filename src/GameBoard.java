@@ -11,23 +11,29 @@ public class GameBoard extends JFrame {
     private JButton newGameButton;
     private Font custom = new Font("Arial", Font.PLAIN, 15);
     private Font custom1 = new Font("Arial", Font.BOLD, 20);
-    Color coustumColor = new Color(128,234,255);
+    private Color coustumColor = new Color(128,234,255);
 
     GameBoard() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        // En lista av knappar för att hålla spelbrickorna
         buttons = new ArrayList<>();
+        // Initialisera spelet med sorterade knappar
         initializeSortedGame();
 
-        setLayout(new BorderLayout());
+        // Skapar en JPanel
         puzzlePanel = new JPanel(new GridLayout(4, 4));
 
+        // Lägger till varje knapp i panelen
         for (JButton button : buttons) {
             puzzlePanel.add(button);
         }
         add(puzzlePanel, BorderLayout.CENTER);
+
+        // Skapar en instans av buttonFunction för att hantera knappinteraktioner
         ButtonFunction buttonFunction = new ButtonFunction(this);
 
+        // Lägger till ActionListener för varje knapp i listan
         for(JButton button : buttons) {
             button.addActionListener(buttonFunction);
         }
@@ -49,9 +55,7 @@ public class GameBoard extends JFrame {
             button.setBackground(coustumColor);
             button.setForeground(Color.WHITE);
             button.setFont(custom1);
-            button.addActionListener(e -> {
 
-            });
         }
 
         // Lägger till den tomma knappen
@@ -60,11 +64,11 @@ public class GameBoard extends JFrame {
         emptyButton.setBackground(Color.WHITE);
 
     }
-        // Metod för att shuffla knapparna
+        // Metod för att blanda knapparna
         public void shuffleButtons () {
             Collections.shuffle(buttons);
-            puzzlePanel.removeAll(); //Tar bort befintliga brickor från spelet
-            for (JButton button : buttons) {
+            puzzlePanel.removeAll(); //Tar bort befintliga knapparna från spelet
+            for (JButton button : buttons) { // Lägger till de blandade knapparna
                 puzzlePanel.add(button);
                 if (button.getText().isEmpty()) {
                     emptyButton = button;
